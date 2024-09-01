@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 
 const Main = () => {
-    const [temperature, setTemperature] = useState();
+    const [temperature, setTemperature] = useState("Loading...");
 
     useEffect(() => {
         const getData = async () => {
