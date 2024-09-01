@@ -43,3 +43,35 @@
 .headerButtons:last-child {
     margin-right: 30vh;
 }
+
+@media screen and (max-width: 450px) {
+    .mainTitle {
+        font-size: 20px;
+    }
+
+    .buttonText {
+        font-size: 13px;
+    }
+
+    .titleBox {
+        margin-left: 3vh;
+    }
+
+    .headerButtons {
+        margin: 5px;
+    }
+
+    .headerButtons:last-child {
+        margin-right: 3vh;
+    }
+
+    .mainBox {
+        height: 10vh;
+    }
+
+    .imageTitle {
+        position: absolute;
+        top: 2vh;
+        left: 1vh;
+    }
+}

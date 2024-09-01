@@ -31,3 +31,10 @@
     padding: 0px;
     padding-top: 5px;
 }
+
+@media screen and (max-width: 450px) {
+    .weatherBox {
+        width: 70%;
+        height: 30%;
+    }
+}
