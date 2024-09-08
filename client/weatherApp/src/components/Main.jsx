@@ -2,7 +2,7 @@ import classes from "./Main.module.css"
 
 import temperatureIcon from "../assets/Images/temperatureIcon.png"
 import locationIcon from "../assets/Images/locationIcon.png"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 //input import
 import { Input, Space } from 'antd';
@@ -21,7 +21,6 @@ const Main = () => {
     const [city, setCity] = useState("Enter the city")
 
     const getData = async (lat, lon) => {
-        console.log(lat + " " + lon)
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a4674d9ec6f6aa3b00fd1df3067505a0&units=metric`;
         const fullResponse = await fetch(url)
         await fullResponse.json().then((response) => {
@@ -44,7 +43,7 @@ const Main = () => {
     const onSearch = (value) => {
         getGeo(value)
         setTemperature("Loading...")
-        setCity("Loading...")
+        setCity(value)
     }
 
     return (
