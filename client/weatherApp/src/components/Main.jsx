@@ -4,7 +4,8 @@ import temperatureIcon from "../assets/Images/temperatureIcon.png"
 import locationIcon from "../assets/Images/locationIcon.png"
 import { useEffect, useState } from "react";
 
-
+import { Input, Space } from 'antd';
+const { Search } = Input;
 
 const Main = () => {
     const [temperature, setTemperature] = useState("Loading...");
@@ -24,8 +25,22 @@ const Main = () => {
         getData();
     }, [])
 
+    const onSearch = (value) => {
+        console.log(value);
+    }
+
     return (
         <div className={classes.mainBox}>
+            <div className={classes.searchBox}>
+                <Space direction="vertical" className={classes.spaceInput}>
+                    <Search
+                        placeholder="Enter the city name"
+                        onSearch={onSearch}
+                        className={classes.searchInput}>
+                    </Search>
+                </Space>
+            </div>
+
             <div className={classes.weatherBox}>
                 <div className={classes.cityBox}>
                     <h2 className={classes.cityTitle}>{city}</h2>

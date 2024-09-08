@@ -1,9 +1,11 @@
 .mainBox {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     height: 70vh;
+    border: 1px solid red;
 }
 
 .weatherBox {
@@ -56,7 +58,23 @@
     padding-top: 5px;
 }
 
+.searchBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid red;
+}
+
+.spaceInput {
+    width: 30%;
+}
+
 @media screen and (max-width: 450px) {
+    .mainBox {
+        justify-content: center;
+    }
+
     .weatherBox {
         width: 70%;
         height: 30%;
@@ -88,4 +106,13 @@
         padding: 0px;
         padding-top: 1px;
     }
+
+    .searchBox {
+        margin-bottom: 8%;
+    }
+
+    .spaceInput {
+        width: 50%;
+    }
+
 }
