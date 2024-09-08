@@ -1,5 +1,7 @@
 import classes from "./Main.module.css"
 
+import Loading from "./Loading.jsx"
+
 import temperatureIcon from "../assets/Images/temperatureIcon.png"
 import locationIcon from "../assets/Images/locationIcon.png"
 import { useState } from "react";
@@ -8,17 +10,12 @@ import { useState } from "react";
 import { Input, Space } from 'antd';
 const { Search } = Input;
 
-//loading import
-/*import { Flex, Spin } from 'antd';
-const contentStyle = {
-    padding: 50,
-    borderRadius: 4,
-};
-const content = <div style={contentStyle} className={classes.loadingTitle} />;*/
-
 const Main = () => {
     const [temperature, setTemperature] = useState("NaN");
     const [city, setCity] = useState("Enter the city")
+
+    const [titleVis, setTitleVis] = useState("hidden")
+    const [iconVis, setIconVis] = useState("hidden")
 
     const getData = async (lat, lon) => {
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a4674d9ec6f6aa3b00fd1df3067505a0&units=metric`;
@@ -41,8 +38,9 @@ const Main = () => {
     }
 
     const onSearch = (value) => {
+        setTitleVis("visible")
+        setIconVis("visible")
         getGeo(value)
-        setTemperature("Loading...")
         setCity(value)
     }
 
@@ -65,8 +63,8 @@ const Main = () => {
                 </div>
 
                 <div className={classes.temperatureBox}>
-                    <img src={temperatureIcon} className={classes.temperatureIcon}></img>
-                    <h2 className={classes.temperatureTitle}>{temperature}°C</h2>
+                    <img src={temperatureIcon} className={classes.temperatureIcon} style={{ visibility: iconVis }}></img>
+                    <h2 className={classes.temperatureTitle} style={{ visibility: titleVis }}>{temperature == "NaN" ? <Loading /> : temperature + "°C"}</h2>
                 </div>
             </div>
         </div>
