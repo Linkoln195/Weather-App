@@ -4,29 +4,47 @@ import temperatureIcon from "../assets/Images/temperatureIcon.png"
 import locationIcon from "../assets/Images/locationIcon.png"
 import { useEffect, useState } from "react";
 
+//input import
 import { Input, Space } from 'antd';
 const { Search } = Input;
 
+//loading import
+/*import { Flex, Spin } from 'antd';
+const contentStyle = {
+    padding: 50,
+    borderRadius: 4,
+};
+const content = <div style={contentStyle} className={classes.loadingTitle} />;*/
+
 const Main = () => {
-    const [temperature, setTemperature] = useState("Loading...");
-    const [city, setCity] = useState("Loading...")
+    const [temperature, setTemperature] = useState("NaN");
+    const [city, setCity] = useState("Enter the city")
 
-    useEffect(() => {
-        const getData = async () => {
-            const url = "https://api.openweathermap.org/data/2.5/weather?lat=51.1854&lon=6.44172&appid=a4674d9ec6f6aa3b00fd1df3067505a0&units=metric";
-            const fullResponse = await fetch(url)
-            await fullResponse.json().then((response) => {
-                setTemperature(Math.round(response.main.temp))
-                setCity(response.name)
-                console.log(response)
-            })
-        }
+    const getData = async (lat, lon) => {
+        console.log(lat + " " + lon)
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a4674d9ec6f6aa3b00fd1df3067505a0&units=metric`;
+        const fullResponse = await fetch(url)
+        await fullResponse.json().then((response) => {
+            setTemperature(Math.round(response.main.temp))
+            setCity(response.name)
+            console.log(response)
+        })
+    }
 
-        getData();
-    }, [])
+    const getGeo = async (cityName) => {
+        const url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&units=metric&appid=a4674d9ec6f6aa3b00fd1df3067505a0`
+        const fullResponse = await fetch(url)
+        await fullResponse.json().then((response) => {
+            setCity(response[0].name)
+            getData(response[0].lat, response[0].lon)
+            console.log(response[0])
+        })
+    }
 
     const onSearch = (value) => {
-        console.log(value);
+        getGeo(value)
+        setTemperature("Loading...")
+        setCity("Loading...")
     }
 
     return (
@@ -49,7 +67,7 @@ const Main = () => {
 
                 <div className={classes.temperatureBox}>
                     <img src={temperatureIcon} className={classes.temperatureIcon}></img>
-                    <h2 className={classes.temperatureTitle}>{temperature}</h2>
+                    <h2 className={classes.temperatureTitle}>{temperature}°C</h2>
                 </div>
             </div>
         </div>

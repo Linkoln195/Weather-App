@@ -68,6 +68,27 @@
     width: 30%;
 }
 
+.loadingBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.loadingTitle {
+    font-size: 17px;
+    margin: 0;
+    padding: 0;
+}
+
+.loadingIcon {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
 @media screen and (max-width: 450px) {
     .mainBox {
         justify-content: center;
