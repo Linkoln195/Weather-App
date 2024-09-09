@@ -42,6 +42,7 @@ const Main = () => {
         setIconVis("visible")
         getGeo(value)
         setCity(value)
+        setTemperature("NaN")
     }
 
     return (
