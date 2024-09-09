@@ -4,6 +4,7 @@ import Loading from "./Loading.jsx"
 
 import temperatureIcon from "../assets/Images/temperatureIcon.png"
 import locationIcon from "../assets/Images/locationIcon.png"
+import weatherIcon from "https://openweathermap.org/img/wn/10d@2x.png"
 import { useState } from "react";
 
 //input import
@@ -23,7 +24,6 @@ const Main = () => {
         await fullResponse.json().then((response) => {
             setTemperature(Math.round(response.main.temp))
             setCity(response.name)
-            import weatherIcon from "https://openweathermap.org/img/wn/10d@2x.png"
             console.log(response)
         })
     }
