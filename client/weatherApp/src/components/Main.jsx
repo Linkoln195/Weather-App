@@ -23,6 +23,7 @@ const Main = () => {
         await fullResponse.json().then((response) => {
             setTemperature(Math.round(response.main.temp))
             setCity(response.name)
+            import weatherIcon from "https://openweathermap.org/img/wn/10d@2x.png"
             console.log(response)
         })
     }
@@ -66,6 +67,7 @@ const Main = () => {
                 <div className={classes.temperatureBox}>
                     <img src={temperatureIcon} className={classes.temperatureIcon} style={{ visibility: iconVis }}></img>
                     <h2 className={classes.temperatureTitle} style={{ visibility: titleVis }}>{temperature == "NaN" ? <Loading /> : temperature + "°C"}</h2>
+                    <img src={weatherIcon} className={classes.weatherIcon} style={{ visibility: iconVis }}></img>
                 </div>
             </div>
         </div>
