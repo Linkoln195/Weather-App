@@ -40,9 +40,9 @@ const Main = () => {
     const onSearch = (value) => {
         setTitleVis("visible")
         setIconVis("visible")
-        getGeo(value)
         setCity(value)
         setTemperature("NaN")
+        getGeo(value)
     }
 
     return (
